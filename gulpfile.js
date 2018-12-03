@@ -40,19 +40,25 @@ gulp.task('copy-json', function () {
         .pipe(gulp.dest(path.example));
 });
 
+gulp.task('copy-definition', function () {
+    gulp.src(path.src + '**/*.d.ts')
+        .pipe(gulp.dest(path.dist))
+        .pipe(gulp.dest(path.example));
+});
+
 gulp.task('compile-ts', function () {
     var tsResult = tsProject.src()
         .pipe(tsProject());
     return tsResult.js
         .pipe(gulp.dest(path.dist))
         .pipe(gulp.dest(path.example));
-
 });
 
 gulp.task('default', function (cb) {
     runSequence('clean', [
         'lint-ts',
         'compile-ts',
+        'copy-definition',
         'copy-json',
     ], cb);
 });

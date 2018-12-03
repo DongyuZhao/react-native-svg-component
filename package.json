@@ -13,6 +13,7 @@
     "dist/"
   ],
   "main": "dist/index",
+  "type": "dist/module.d.ts",
   "scripts": {
     "pre-commit": "yarn build",
     "devtools": "react-devtools",
