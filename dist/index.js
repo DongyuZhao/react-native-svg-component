@@ -52,7 +52,6 @@ let Svg = class Svg extends React.Component {
     }
     render() {
         if (this.state.data) {
-            console.log(this.state.data);
             return this.createSvgFromXml(this.state.data);
         }
         return null;

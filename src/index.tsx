@@ -35,7 +35,6 @@ export class Svg extends React.Component<IProps, IState> {
 
     public render() {
         if (this.state.data) {
-            console.log(this.state.data);
             return this.createSvgFromXml(this.state.data);
         }
         return null;
