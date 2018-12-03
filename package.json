@@ -1,0 +1,56 @@
+{
+  "name": "react-native-svg-component",
+  "description": "A component that could render svg from xml or svg file using react-native-svg",
+  "version": "0.1.0",
+  "repository": {
+    "url": "git+https://github.com/DongyuZhao/react-native-svg-component",
+    "type": "git"
+  },
+  "author": "Dongyu Zhao",
+  "private": false,
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/index",
+  "scripts": {
+    "pre-commit": "yarn build",
+    "devtools": "react-devtools",
+    "build": "gulp",
+    "src": "yarn",
+    "all": "yarn src && yarn example",
+    "example": "cd examples && yarn",
+    "run-device": "yarn build && cd examples && yarn start",
+    "run-ios": "yarn build && cd examples && yarn ios",
+    "run-android": "yarn build && cd examples && yarn android"
+  },
+  "pre-commit": {
+    "run": [
+      "pre-commit"
+    ],
+    "silent": true
+  },
+  "devDependencies": {
+    "@types/react": "^16.7.11",
+    "@types/react-native": "^0.57.15",
+    "@types/react-native-vector-icons": "^4.6.4",
+    "@types/xmldom": "^0.1.29",
+    "del": "latest",
+    "gulp": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-rename": "^1.4.0",
+    "gulp-tslint": "latest",
+    "gulp-typescript": "latest",
+    "react-devtools": "latest",
+    "run-sequence": "latest",
+    "tslint": "latest",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-native": "^0.57.7",
+    "react-native-vector-icons": "^6.1.0",
+    "react-native-svg": "^8.0.8",
+    "xmldom": "^0.1.27"
+  }
+}
