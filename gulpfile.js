@@ -11,13 +11,12 @@ var tsProject = typescript.createProject('tsconfig.json');
 
 var path = {
     src: './src/',
-    dist: './dist/',
-    example: './examples/react-native-svg-component/',
+    dist: './dist/'
 };
 
 // Clean destination folder
 gulp.task('clean', function () {
-    return del([path.dist, path.example]);
+    return del([path.dist]);
 });
 
 // Checks your TypeScript code for readability, maintainability, and functionality errors.
@@ -36,22 +35,19 @@ gulp.task('lint-ts', function () {
 // Copy .json files
 gulp.task('copy-json', function () {
     gulp.src(path.src + '**/*.json')
-        .pipe(gulp.dest(path.dist))
-        .pipe(gulp.dest(path.example));
+        .pipe(gulp.dest(path.dist));
 });
 
 gulp.task('copy-definition', function () {
     gulp.src(path.src + '**/*.d.ts')
-        .pipe(gulp.dest(path.dist))
-        .pipe(gulp.dest(path.example));
+        .pipe(gulp.dest(path.dist));
 });
 
 gulp.task('compile-ts', function () {
     var tsResult = tsProject.src()
         .pipe(tsProject());
     return tsResult.js
-        .pipe(gulp.dest(path.dist))
-        .pipe(gulp.dest(path.example));
+        .pipe(gulp.dest(path.dist));
 });
 
 gulp.task('default', function (cb) {

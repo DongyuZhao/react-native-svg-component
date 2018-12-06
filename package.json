@@ -32,8 +32,8 @@
     "silent": true
   },
   "devDependencies": {
-    "@types/react": "^16.7.11",
-    "@types/react-native": "^0.57.15",
+    "@types/react": "^16.7.13",
+    "@types/react-native": "^0.57.17",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/xmldom": "^0.1.29",
     "del": "latest",
@@ -47,8 +47,11 @@
     "tslint": "latest",
     "typescript": "latest"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react-native-svg": "^8.0.8",
     "xmldom": "^0.1.27"
+  },
+  "dependencies": {
+    "react-native-svg": "^8.0.8"
   }
 }
