@@ -11,6 +11,10 @@ export class UrlUtils {
         return url && /(^data:image\/svg\+xml)/.test(url);
     }
 
+    public static isSvgXml(url: string) {
+        return url && /(^<svg )/.test(url);
+    }
+
     public static isDeepLink(url: string) {
         return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
     }
@@ -20,7 +24,7 @@ export class UrlUtils {
     }
 
     public static needFetch(url: string) {
-        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
+        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isSvgXml(url) && !UrlUtils.isDeepLink(url);
     }
 
     public static composeUrl(base: string, path: string) {
