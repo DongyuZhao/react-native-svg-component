@@ -19,12 +19,7 @@ let Svg = class Svg extends React.Component {
             if (source) {
                 let uri = source.uri;
                 if (uri) {
-                    if (UrlUtils.isSvgXml(uri)) {
-                        this.setState({
-                            data: this.extractSvgXml(uri),
-                        });
-                    }
-                    else {
+                    if (UrlUtils.needFetch(uri)) {
                         let resolved = Image.resolveAssetSource(source);
                         if (resolved && resolved.uri) {
                             fetch(resolved.uri).then(response => {
@@ -39,6 +34,11 @@ let Svg = class Svg extends React.Component {
                                 console.log(`SVG >> Fetch error >> ${err}`);
                             });
                         }
+                    }
+                    else {
+                        this.setState({
+                            data: this.extractSvgXml(uri),
+                        });
                     }
                 }
             }

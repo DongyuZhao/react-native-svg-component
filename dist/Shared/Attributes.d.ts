@@ -1,0 +1,24 @@
+export declare const Attributes: {
+    'circle': string[];
+    'clipPath': string[];
+    'defs': string[];
+    'ellipse': string[];
+    'g': string[];
+    'image': string[];
+    'line': string[];
+    'linearGradient': string[];
+    'path': string[];
+    'pattern': string[];
+    'polygon': string[];
+    'polyline': string[];
+    'radialGradient': string[];
+    'rect': string[];
+    'stop': string[];
+    'svg': string[];
+    'symbol': string[];
+    'tspan': string[];
+    'text': string[];
+    'use': string[];
+    'mask': string[];
+    'common': string[];
+};

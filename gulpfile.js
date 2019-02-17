@@ -3,24 +3,30 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var rename = require('gulp-rename');
 var gulpTslint = require('gulp-tslint');
-var runSequence = require('run-sequence');
-var typescript = require('gulp-typescript');
+var ts = require('gulp-typescript');
 var tslint = require('tslint');
 
-var tsProject = typescript.createProject('tsconfig.json');
+var tsProject = ts.createProject('tsconfig.json');
 
 var path = {
     src: './src/',
-    dist: './dist/'
+    dist: './dist/',
 };
-
-// Clean destination folder
-gulp.task('clean', function () {
+function clean() {
     return del([path.dist]);
-});
+}
 
-// Checks your TypeScript code for readability, maintainability, and functionality errors.
-gulp.task('lint-ts', function () {
+function minifyImage() {
+    return gulp.src(path.src + 'Assets/**/*.png')
+        .pipe(imagemin())
+        .pipe(gulp.dest(path.dist + 'Assets'))
+        .pipe(rename(function (opt) {
+            opt.basename = opt.basename.replace(/@[^.]*/, '');
+            return opt;
+        }));
+}
+
+function lintTs() {
     var program = tslint.Linter.createProgram('./tsconfig.json');
     return gulp.src([path.src + '**/*.ts', path.src + '**/*.tsx'])
         .pipe(gulpTslint({
@@ -30,31 +36,34 @@ gulp.task('lint-ts', function () {
         .pipe(gulpTslint.report({
             emitError: true
         }));
-});
+}
 
-// Copy .json files
-gulp.task('copy-json', function () {
-    gulp.src(path.src + '**/*.json')
+function copyJson() {
+    return gulp.src(path.src + '**/*.json')
         .pipe(gulp.dest(path.dist));
-});
+}
 
-gulp.task('copy-definition', function () {
-    gulp.src(path.src + '**/*.d.ts')
+function copyDefinition() {
+    return gulp.src(path.src + '**/*.d.ts')
         .pipe(gulp.dest(path.dist));
-});
+}
 
-gulp.task('compile-ts', function () {
+function compileTs() {
     var tsResult = tsProject.src()
         .pipe(tsProject());
-    return tsResult.js
-        .pipe(gulp.dest(path.dist));
-});
+    return tsResult.pipe(gulp.dest(path.dist));
+}
 
-gulp.task('default', function (cb) {
-    runSequence('clean', [
-        'lint-ts',
-        'compile-ts',
-        'copy-definition',
-        'copy-json',
-    ], cb);
-});
+exports.clean = clean;
+exports.minifyImage = minifyImage;
+exports.lintTs = lintTs;
+exports.copyJson = copyJson;
+exports.compileTs = compileTs;
+exports.copyDefinition = copyDefinition;
+exports.build = gulp.series(
+    lintTs,
+    clean,
+    compileTs,
+    gulp.parallel(minifyImage, copyJson),
+);
+exports.default = exports.build;

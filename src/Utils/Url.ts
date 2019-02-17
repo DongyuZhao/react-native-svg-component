@@ -7,16 +7,20 @@ export class UrlUtils {
         return url && /^data:/.test(url);
     }
 
-    public static isSvgXml(url: string) {
-        return url && /(^data:image\/svg\+xml)|(\.svg$)/.test(url);
+    public static isEncodedSvg(url: string) {
+        return url && /(^data:image\/svg\+xml)/.test(url);
     }
 
     public static isDeepLink(url: string) {
-        return url && /^[\w]+:\/\//.test(url) && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url);
+        return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
     }
 
     public static isRelativeUrl(url: string) {
         return url && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
+    }
+
+    public static needFetch(url: string) {
+        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
     }
 
     public static composeUrl(base: string, path: string) {

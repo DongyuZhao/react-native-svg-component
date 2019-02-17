@@ -5,14 +5,17 @@ export class UrlUtils {
     static isEncodedData(url) {
         return url && /^data:/.test(url);
     }
-    static isSvgXml(url) {
-        return url && /(^data:image\/svg\+xml)|(\.svg$)/.test(url);
+    static isEncodedSvg(url) {
+        return url && /(^data:image\/svg\+xml)/.test(url);
     }
     static isDeepLink(url) {
-        return url && /^[\w]+:\/\//.test(url) && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url);
+        return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
     }
     static isRelativeUrl(url) {
         return url && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
+    }
+    static needFetch(url) {
+        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
     }
     static composeUrl(base, path) {
         if (base && base.length > 0 && path && path.length > 0) {
