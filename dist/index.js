@@ -50,6 +50,15 @@ let Svg = class Svg extends React.Component {
     componentDidMount() {
         this.fetchFromSource();
     }
+    componentDidUpdate(prevProps) {
+        if (prevProps.source && this.props.source) {
+            let prevUri = prevProps.source.uri;
+            let uri = this.props.source.uri;
+            if (prevUri !== uri) {
+                this.fetchFromSource();
+            }
+        }
+    }
     render() {
         if (this.state.data) {
             return this.createSvgFromXml(this.state.data);

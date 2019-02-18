@@ -13,6 +13,7 @@ interface IState {
 export declare class Svg extends React.Component<IProps, IState> {
     constructor(props: IProps);
     componentDidMount(): void;
+    componentDidUpdate(prevProps: IProps): void;
     render(): React.ComponentElement<any, any>;
     private createSvgFromXml;
     private createSvgElement;

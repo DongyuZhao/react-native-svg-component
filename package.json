@@ -1,7 +1,7 @@
 {
   "name": "react-native-svg-component",
   "description": "A component that could render svg from xml or svg file using react-native-svg",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "repository": {
     "url": "git+https://github.com/DongyuZhao/react-native-svg-component",
     "type": "git"

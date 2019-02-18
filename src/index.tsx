@@ -33,6 +33,17 @@ export class Svg extends React.Component<IProps, IState> {
         this.fetchFromSource();
     }
 
+    public componentDidUpdate(prevProps: IProps) {
+        if (prevProps.source && this.props.source) {
+            let prevUri = (prevProps.source as any).uri as string;
+            let uri = (this.props.source as any).uri as string;
+
+            if (prevUri !== uri) {
+                this.fetchFromSource();
+            }
+        }
+    }
+
     public render() {
         if (this.state.data) {
             return this.createSvgFromXml(this.state.data);
