@@ -12,7 +12,7 @@ export class UrlUtils {
     }
 
     public static isXml(url: string) {
-        return url && url.length > 0 && url[0] === '<';
+        return url && /(^<)|(^%3c)/.test(url);
     }
 
     public static isDeepLink(url: string) {

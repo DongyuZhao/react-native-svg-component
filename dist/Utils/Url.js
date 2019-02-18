@@ -9,7 +9,7 @@ export class UrlUtils {
         return url && /(^data:image\/svg\+xml)/.test(url);
     }
     static isXml(url) {
-        return url && url.length > 0 && url[0] === '<';
+        return url && /(^<)|(^%3c)/.test(url);
     }
     static isDeepLink(url) {
         return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
