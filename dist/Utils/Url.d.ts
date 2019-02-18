@@ -2,7 +2,7 @@ export declare class UrlUtils {
     static isRemoteUrl(url: string): boolean;
     static isEncodedData(url: string): boolean;
     static isEncodedSvg(url: string): boolean;
-    static isSvgXml(url: string): boolean;
+    static isXml(url: string): boolean;
     static isDeepLink(url: string): boolean;
     static isRelativeUrl(url: string): boolean;
     static needFetch(url: string): boolean;

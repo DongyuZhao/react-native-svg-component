@@ -8,8 +8,8 @@ export class UrlUtils {
     static isEncodedSvg(url) {
         return url && /(^data:image\/svg\+xml)/.test(url);
     }
-    static isSvgXml(url) {
-        return url && /(^<svg )/.test(url);
+    static isXml(url) {
+        return url && url.length > 0 && url[0] === '<';
     }
     static isDeepLink(url) {
         return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
@@ -18,7 +18,7 @@ export class UrlUtils {
         return url && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
     }
     static needFetch(url) {
-        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isSvgXml(url) && !UrlUtils.isDeepLink(url);
+        return url && !UrlUtils.isEncodedData(url) && !UrlUtils.isXml(url) && !UrlUtils.isDeepLink(url);
     }
     static composeUrl(base, path) {
         if (base && base.length > 0 && path && path.length > 0) {
