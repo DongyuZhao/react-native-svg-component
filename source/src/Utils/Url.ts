@@ -24,7 +24,7 @@ export class UrlUtils {
     }
 
     public static isSvg(url: string) {
-        return url && (UrlUtils.isEncodedSvg(url) || UrlUtils.isXml(url) || UrlUtils.isSvgFile);
+        return url && (UrlUtils.isEncodedSvg(url) || UrlUtils.isXml(url) || UrlUtils.isSvgFile(url));
     }
 
     public static isRelativeUrl(url: string) {
