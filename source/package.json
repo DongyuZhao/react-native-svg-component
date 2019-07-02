@@ -1,6 +1,6 @@
 {
     "name": "react-native-svg-component",
-    "version": "0.1.18",
+    "version": "0.1.23",
     "description": "",
     "main": "./src/Index.tsx",
     "scripts": {
@@ -15,8 +15,8 @@
     "author": "Dongyu Zhao",
     "license": "MIT",
     "peerDependencies": {
-        "react": "16.8.3",
-        "react-native": "^0.59.9",
+        "react": "16.8.6",
+        "react-native": "^0.59.10",
         "react-native-svg": "^9.5.1"
     },
     "devDependencies": {
