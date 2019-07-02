@@ -1,0 +1,32 @@
+{
+    "name": "react-native-svg-component",
+    "version": "0.1.17",
+    "description": "",
+    "main": "./src/Index.tsx",
+    "scripts": {
+        "dev": "react-devtools"
+    },
+    "keywords": [
+        "react-native",
+        "svg",
+        "ios",
+        "android"
+    ],
+    "author": "Dongyu Zhao",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": "16.8.3",
+        "react-native": "^0.59.9",
+        "react-native-svg": "^9.5.1"
+    },
+    "devDependencies": {
+        "@types/react": "^16.8.22",
+        "@types/react-native": "^0.57.65",
+        "@types/xmldom": "^0.1.29",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "xmldom": "^0.1.27"
+    }
+}

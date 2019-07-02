@@ -1,53 +1,37 @@
 {
-  "name": "react-native-svg-component",
-  "description": "A component that could render svg from xml or svg file using react-native-svg",
-  "version": "0.1.16",
-  "repository": {
-    "url": "git+https://github.com/DongyuZhao/react-native-svg-component",
-    "type": "git"
-  },
-  "author": "Dongyu Zhao",
-  "private": false,
-  "files": [
-    "dist/"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "license": "MIT",
-  "scripts": {
-    "pre-commit": "yarn build",
-    "devtools": "react-devtools",
-    "build": "gulp",
-    "src": "yarn",
-    "all": "yarn src && yarn example",
-    "example": "cd examples && yarn",
-    "run-device": "yarn build && cd examples && yarn start",
-    "run-ios": "yarn build && cd examples && yarn ios",
-    "run-android": "yarn build && cd examples && yarn android"
-  },
-  "pre-commit": {
-    "run": [
-      "pre-commit"
+    "name": "react-native-svg-component-build-repo",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+        "restore": "yarn && yarn source && yarn sample",
+        "source": "cd ./source && yarn",
+        "sample": "cd ./sample && yarn",
+        "lint": "gulp lintTs",
+        "build": "gulp build",
+        "start": "cd sample && yarn start",
+        "dev": "react-devtools"
+    },
+    "keywords": [
+        "react-native",
+        "svg",
+        "ios",
+        "android",
+        "build"
     ],
-    "silent": true
-  },
-  "devDependencies": {
-    "@types/react": "^16.8.3",
-    "@types/react-native": "^0.57.36",
-    "@types/xmldom": "^0.1.29",
-    "del": "latest",
-    "gulp": "^4.0.0",
-    "gulp-imagemin": "latest",
-    "gulp-rename": "^1.4.0",
-    "gulp-tslint": "latest",
-    "gulp-typescript": "latest",
-    "react-devtools": "^3.6.0",
-    "run-sequence": "latest",
-    "tslint": "^5.12.1",
-    "typescript": "^3.3.3"
-  },
-  "dependencies": {
-    "react-native-svg": "^9.2.4",
-    "xmldom": "^0.1.27"
-  }
+    "author": "Dongyu Zhao",
+    "license": "MIT",
+    "devDependencies": {
+        "del": "^4.1.1",
+        "gulp": "^4.0.2",
+        "gulp-imagemin": "^6.0.0",
+        "gulp-json-editor": "^2.5.2",
+        "gulp-rename": "^1.4.0",
+        "gulp-tslint": "^8.1.4",
+        "gulp-typescript": "^5.0.1",
+        "react-devtools": "^3.6.1",
+        "run-sequence": "^2.2.1",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {}
 }

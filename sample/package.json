@@ -1,0 +1,25 @@
+{
+    "name": "react-native-svg-component-sample",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "dev": "react-devtools"
+    },
+    "dependencies": {
+        "react": "16.8.3",
+        "react-native": "0.59.9",
+        "react-native-svg": "^9.5.1"
+    },
+    "devDependencies": {
+        "@types/react": "^16.8.22",
+        "@types/react-native": "^0.57.65",
+        "@babel/core": "^7.4.5",
+        "@babel/runtime": "^7.4.5",
+        "babel-plugin-module-resolver": "^3.2.0",
+        "metro-react-native-babel-preset": "^0.54.1",
+        "react-devtools": "^3.6.1",
+        "react-native-typescript-transformer": "^1.2.12",
+        "typescript": "^3.5.2"
+    }
+}

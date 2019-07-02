@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "es2015",
+        "rootDir": "src",
+        "outDir": "dist",
+        "jsx": "react",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowUnreachableCode": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "plugins": [
+            { "name": "tslint-language-service" },
+            { "name": "typescript-tslint-plugin" }
+        ],
+        "typeRoots": [
+            "node_modules/@types",
+            "@types"
+        ],
+    },
+    "exclude": [
+        "node_modules",
+        "typings",
+        "js",
+        "@types"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+    "compileOnSave": false
+}
