@@ -12,6 +12,7 @@ This repository contains the source code to build common ui control collection i
 
     ```bash
     yarn add react-native-svg-component
+    yarn add react-native-svg
     ```
 
 - run the command to link dependencies
@@ -43,8 +44,6 @@ Before we start, please make sure you have install the following tools on you PC
 - Yarn: [Installation | Yarn](https://yarnpkg.com/en/docs/.install#windows-stable).
 - Watchman: [Installation | Watchman](https://facebook.github.io/watchman/docs/install.html).
 
-**Notes: Android Studio will not add adb to your path. If you wish to run adb from terminal, please add it to your path manually after Android SDK and build tools is installed.**
-
 #### macOS
 
 Before we start, please make sure you have install the following tools on you Mac.
@@ -73,8 +72,6 @@ Before we start, please make sure you have install the following tools on you Ma
     ```bash
     brew install watchman
     ```
-
-**Notes: Android Studio will not add adb to your path. If you wish to run adb from terminal, please add it to your path manually after Android SDK and build tools is installed.**
 
 ### Setup Environment
 
