@@ -1,6 +1,6 @@
 {
     "name": "react-native-svg-component-build-repo",
-    "version": "0.0.1",
+    "version": "0.1.17",
     "description": "",
     "scripts": {
         "restore": "yarn && yarn source && yarn sample",
