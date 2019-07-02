@@ -44,7 +44,6 @@ export class SvgUtils {
         if (xml) {
             const decoded = decodeURIComponent(xml);
 
-            // tslint:disable-next-line: no-magic-numbers
             return decoded.substring(decoded.indexOf('<svg '), decoded.indexOf('</svg>') + 6);
         }
 

@@ -4,7 +4,6 @@ import { ImageProps, StyleSheet, View } from 'react-native';
 import { SvgUtils } from './Utils/Svg';
 import { UrlUtils } from './Utils/Url';
 
-// tslint:disable-next-line: interface-name
 interface State {
     data: string;
 }
@@ -13,7 +12,6 @@ export const name = 'react-native-svg-component';
 
 export const isSvg = UrlUtils.isSvg;
 
-// tslint:disable-next-line: variable-name
 export const Svg = (props: ImageProps) => {
     const [state, setState] = useState({ data: undefined } as State);
 
