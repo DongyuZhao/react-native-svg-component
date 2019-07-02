@@ -19,6 +19,14 @@ export class UrlUtils {
         return url && /^(?!data:\/\/|(http)s*:\/\/|ftp:\/\/)([\w]+):\/\//.test(url);
     }
 
+    public static isSvgFile(url: string) {
+        return url && /\.svg$/.test(url);
+    }
+
+    public static isSvg(url: string) {
+        return url && (UrlUtils.isEncodedSvg(url) || UrlUtils.isXml(url) || UrlUtils.isSvgFile);
+    }
+
     public static isRelativeUrl(url: string) {
         return url && !UrlUtils.isRemoteUrl(url) && !UrlUtils.isEncodedData(url) && !UrlUtils.isDeepLink(url);
     }
