@@ -31,16 +31,30 @@ export const Svg = (props: ImageProps) => {
         SvgUtils.fetch(props.source, onContentFetched, onFetchFailed);
     }, [props.source]);
 
+    const { width, height, ...others } = props;
+
     if (state.data) {
-        return SvgUtils.createSvgFromXml(state.data, props);
+        return (
+            <View
+                style={{
+                    width: width,
+                    height: height,
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                {SvgUtils.createSvgFromXml(state.data, others)}
+            </View>
+        );
     } else {
         return (
             <View
                 accessibilityRole='image'
                 accessibilityLabel={props.accessibilityLabel}
                 style={{
-                    width: props.width,
-                    height: props.height,
+                    width: width,
+                    height: height,
                     borderWidth: StyleSheet.hairlineWidth,
                     borderColor: '#aaa',
                 }}
