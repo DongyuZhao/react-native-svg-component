@@ -31,20 +31,24 @@ export const Svg = (props: ImageProps) => {
         SvgUtils.fetch(props.source, onContentFetched, onFetchFailed);
     }, [props.source]);
 
-    const { width, height, ...others } = props;
+    const { width, height, style, ...others } = props;
 
     if (state.data) {
         return (
             <View
-                style={{
-                    width: width,
-                    height: height,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
+                style={[
+                    {
+                        width: width,
+                        height: height,
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    style
+                ]}
+                {...others}
             >
-                {SvgUtils.createSvgFromXml(state.data, others)}
+                {SvgUtils.createSvgFromXml(state.data)}
             </View>
         );
     } else {
@@ -52,12 +56,15 @@ export const Svg = (props: ImageProps) => {
             <View
                 accessibilityRole='image'
                 accessibilityLabel={props.accessibilityLabel}
-                style={{
-                    width: width,
-                    height: height,
-                    borderWidth: StyleSheet.hairlineWidth,
-                    borderColor: '#aaa',
-                }}
+                style={[
+                    {
+                        width: width,
+                        height: height,
+                        borderWidth: StyleSheet.hairlineWidth,
+                        borderColor: '#aaa',
+                    },
+                    style
+                ]}
             />
         );
     }

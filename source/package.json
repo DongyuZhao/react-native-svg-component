@@ -1,6 +1,6 @@
 {
     "name": "react-native-svg-component",
-    "version": "0.1.27",
+    "version": "0.1.28",
     "description": "",
     "main": "./src/Index.tsx",
     "scripts": {
