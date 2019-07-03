@@ -10,7 +10,9 @@ interface State {
 
 export const name = 'react-native-svg-component';
 
-export const isSvg = UrlUtils.isSvg;
+export const isSvg = (url: string) => {
+    return UrlUtils.isSvg(decodeURIComponent(url));
+};
 
 export const Svg = (props: ImageProps) => {
     const [state, setState] = useState({ data: undefined } as State);
