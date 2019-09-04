@@ -15,9 +15,10 @@ module.exports = {
     resolver: {
         blacklistRE: blacklist([
             new RegExp(
-                `^${escape(
-                    path.resolve(__dirname, 'node_modules', project.name)
-                )}\\/.*$`
+                `^${escape(path.resolve(__dirname, 'node_modules', project.name))}\\/.*$`
+            ),
+            new RegExp(
+                `^${escape(path.resolve(__dirname, '../source', 'node_modules'))}\\/.*$`
             ),
             new RegExp(
                 `^${escape(path.resolve(__dirname, '..', 'node_modules'))}\\/.*$`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageSourcePropType, ViewProps } from 'react-native';
+import { Image, ImageSourcePropType } from 'react-native';
 import XmlDom from 'xmldom';
 
 import { elements } from '../Shared/Elements';
@@ -50,16 +50,19 @@ export class SvgUtils {
         return xml;
     }
 
-    public static createSvgFromXml(xml: string) {
+    public static createSvgFromXml(xml: string, props?: any) {
         if (xml) {
             const doc = new XmlDom.DOMParser().parseFromString(xml);
             const root = doc.childNodes[0];
             if (root) {
+                const extraProps = props ? props : {};
+
                 return SvgUtils.createSvgElement(
                     root as Element,
                     0,
                     {
                         accessibilityRole: 'image',
+                        ...extraProps
                     }
                 );
             }
@@ -68,7 +71,7 @@ export class SvgUtils {
         return null;
     }
 
-    public static createSvgElement(node: Element, key: string | number, props?: ViewProps): React.ComponentElement<any, any> {
+    public static createSvgElement(node: Element, key: string | number, props?: any): React.ComponentElement<any, any> {
         if (node && node.nodeName) {
             const component = elements[node.nodeName];
             if (component) {
