@@ -21,17 +21,17 @@
     "author": "Dongyu Zhao",
     "license": "MIT",
     "devDependencies": {
-        "del": "^4.1.1",
+        "del": "^5.1.0",
         "gulp": "^4.0.2",
-        "gulp-imagemin": "^6.0.0",
-        "gulp-json-editor": "^2.5.2",
+        "gulp-imagemin": "^6.1.0",
+        "gulp-json-editor": "^2.5.3",
         "gulp-rename": "^1.4.0",
         "gulp-tslint": "^8.1.4",
         "gulp-typescript": "^5.0.1",
-        "react-devtools": "^3.6.1",
+        "react-devtools": "^3.6.3",
         "run-sequence": "^2.2.1",
-        "tslint": "^5.18.0",
-        "typescript": "^3.5.2"
+        "tslint": "^5.20.0",
+        "typescript": "^3.6.3"
     },
     "dependencies": {}
 }
