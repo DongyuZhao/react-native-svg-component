@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, ImageSourcePropType } from 'react-native';
-import XmlDom from 'xmldom';
 
 import { elements } from '../Shared/Elements';
 
+import { Parser } from './Parser';
 import { UrlUtils } from './Url';
 import { XmlUtils } from './Xml';
 
@@ -51,35 +51,46 @@ export class SvgUtils {
     }
 
     public static createSvgFromXml(xml: string, props?: any) {
-        if (xml) {
-            const doc = new XmlDom.DOMParser().parseFromString(xml);
-            const root = doc.childNodes[0];
-            if (root) {
-                const extraProps = props ? props : {};
+        const obj = Parser.parse(xml);
 
-                return SvgUtils.createSvgElement(
-                    root as Element,
-                    0,
-                    {
-                        accessibilityRole: 'image',
-                        ...extraProps
-                    }
-                );
-            }
+        if (obj && obj.svg) {
+            return SvgUtils.createSvgFromObject('svg', obj.svg, 0, props);
         }
 
         return null;
     }
 
-    public static createSvgElement(node: Element, key: string | number, props?: any): React.ComponentElement<any, any> {
-        if (node && node.nodeName) {
-            const component = elements[node.nodeName];
-            if (component) {
-                const children = Array.from(node.childNodes).map((childNode, index) => this.createSvgElement(childNode as Element, index));
-                const extraProps = props ? props : {};
+    public static createSvgFromObject(tag: string, obj: any, index: number, props?: any) {
+        const attr = obj['#attr'];
+        const text = obj['#text'];
 
-                return React.createElement(component, { ...XmlUtils.extractProps(node), key: key, ...extraProps }, children);
-            }
+        const filtered = XmlUtils.filterAttributes(tag, XmlUtils.extractAttributes(attr));
+
+        let children: React.ReactNode;
+
+        if (text && typeof text === 'string') {
+            children = text;
+        } else {
+            children = [];
+            Object.entries(obj).filter(entry => entry[0] !== '#attr' && entry[0] !== '#text').forEach((entry, key) => {
+                if (Array.isArray(entry[1])) {
+                    // if it is an array, we need to flatten it for correct render
+                    children = (children as Array<any>).concat(
+                        (entry[1] as Array<any>).map((val, k) =>
+                            SvgUtils.createSvgFromObject(entry[0], val, k + key * 10)
+                        )
+                    );
+                } else {
+                    (children as Array<any>).push(SvgUtils.createSvgFromObject(entry[0], entry[1], key * 10));
+                }
+            });
+        }
+
+        const component = elements[tag];
+        if (component) {
+            const extra = props ? props : {};
+
+            return React.createElement(component, { ...filtered, ...extra, key: index }, children);
         }
 
         return null;

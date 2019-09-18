@@ -15,18 +15,17 @@
     "author": "Dongyu Zhao",
     "license": "MIT",
     "peerDependencies": {
-        "react": "16.8.6",
-        "react-native": "^0.59.10",
-        "react-native-svg": "^9.5.1"
+        "react": "16.9.0",
+        "react-native": "^0.60.5",
+        "react-native-svg": "^9.9.4"
     },
     "devDependencies": {
-        "@types/react": "^16.8.22",
-        "@types/react-native": "^0.57.65",
-        "@types/xmldom": "^0.1.29",
-        "tslint": "^5.18.0",
-        "typescript": "^3.5.2"
+        "@types/react": "^16.9.2",
+        "@types/react-native": "^0.60.15",
+        "tslint": "^5.20.0",
+        "typescript": "^3.6.3"
     },
     "dependencies": {
-        "xmldom": "^0.1.27"
+        "fast-xml-parser": "3.12.20"
     }
 }

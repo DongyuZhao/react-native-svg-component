@@ -9,34 +9,23 @@ export class XmlUtils {
         return str;
     }
 
-    public static camelizeNodeName(attr: { nodeName: string, nodeValue: string }) {
-        if (attr) {
-            return {
-                nodeName: XmlUtils.camelize(attr.nodeName),
-                nodeValue: attr.nodeValue
-            };
+    public static isActiveAttribute(tag: string, attr: string) {
+        if (tag && attr) {
+            const common = attributes['common'];
+            const accepts = (attributes as any)[tag] as string[];
+
+            return common.includes(attr) || (accepts && accepts.includes(attr));
         }
 
-        return attr;
+        return false;
     }
 
-    public static removeCssUnit(attr: { nodeName: string, nodeValue: string}) {
-        if (attr) {
-            return {
-                nodeName: attr.nodeName,
-                nodeValue: attr.nodeValue.replace('px', ''),
-            };
-        }
-
-        return attr;
-    }
-
-    public static extractCssRules(css: { nodeName: string, nodeValue: string}) {
-        if (css && css.nodeName === 'style') {
-            return css.nodeValue.split(';').reduce((prev, rule) => {
+    public static extractCssRules(attr: any) {
+        if (attr && attr.style && typeof attr.style === 'string') {
+            return (attr.style as string).split(';').reduce((prev, rule) => {
                 let [name, value] = rule.split(':');
                 name = name.trim();
-                value = value.trim();
+                value = value.trim().replace('px', '');
                 if (name !== '') {
                     prev[XmlUtils.camelize(name)] = value;
                 }
@@ -48,33 +37,36 @@ export class XmlUtils {
         return {};
     }
 
-    public static isActiveAttribute(elementName: string, attr: { nodeName: string, nodeValue: string}) {
-        if (elementName && attr) {
-            const common = attributes['common'];
-            const accepts = (attributes as any)[elementName] as string[];
+    public static extractAttributes(attr: any) {
+        const extracted = {} as any;
 
-            return common.includes(attr.nodeName) || (accepts && accepts.includes(attr.nodeName));
+        if (attr) {
+            if (attr.style && typeof attr.style === 'string') {
+                const style = XmlUtils.extractCssRules(attr);
+                Object.assign(extracted, style);
+            }
+            // camelize
+            Object.entries(attr).forEach(prop => {
+                if (prop[0] !== 'style') {
+                    extracted[XmlUtils.camelize(prop[0])] = prop[1];
+                }
+            });
         }
 
-        return false;
+        return extracted;
     }
 
-    public static extractProps(node: Element) {
-        const result: any = {};
-        if (node && node.attributes) {
-            Array.from(node.attributes)
-                .map(XmlUtils.camelizeNodeName)
-                .map(XmlUtils.removeCssUnit)
-                .filter(current => XmlUtils.isActiveAttribute(node.nodeName, current))
-                .forEach(attr => {
-                    if (attr.nodeName === 'style') {
-                        Object.assign(result, XmlUtils.extractCssRules(attr));
-                    } else {
-                        result[XmlUtils.camelize(attr.nodeName)] = attr.nodeValue;
-                    }
-                });
+    public static filterAttributes(tag: string, attr: any) {
+        const filtered = {} as any;
+
+        if (tag && attr) {
+            Object.keys(attr).forEach(key => {
+                if (XmlUtils.isActiveAttribute(tag, key)) {
+                    filtered[key] = attr[key];
+                }
+            });
         }
 
-        return result;
+        return filtered;
     }
 }
